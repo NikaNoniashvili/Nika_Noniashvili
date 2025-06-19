@@ -1,10 +1,24 @@
-﻿namespace ConsoleApp2
+﻿namespace G08_20251406;
+
+internal class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        MyLinkedList<int> list = new MyLinkedList<int>();
+        list.AddFirst(1);
+        list.AddFirst(2);
+        list.AddFirst(3);
+        list.AddFirst(4);
+        list.AddLast(5);
+        list.AddLast(6);
+        list.AddAfter(list.First, 7);
+        list.AddAfter(list.First, 8);
+
+        MyNode<int> current = list.First;
+        while (current != null)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine(current.Value);
+            current = current.Next;
         }
     }
 }
