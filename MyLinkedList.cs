@@ -99,12 +99,28 @@ class MyLinkedList<T> : ICollection<T>
 
     public MyNode<T> AddBefore(MyNode<T> node, T value)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(node, nameof(node));
+        MyNode<T> newNode = new MyNode<T>(value);
+        AddBefore(node, newNode);
+        return newNode;
     }
 
     public void AddBefore(MyNode<T> node, MyNode<T> newNode)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(node, nameof(node));
+        ArgumentNullException.ThrowIfNull(newNode, nameof(newNode));
+        newNode.Next = node;
+        newNode.Previous = node.Previous;
+        if (node.Previous != null)
+        {
+            node.Previous.Next = newNode;
+        }
+        else
+        {
+            First = newNode;
+        }
+        node.Previous = newNode;
+        Count++;
     }
 
     public MyNode<T>? Find(T value)
