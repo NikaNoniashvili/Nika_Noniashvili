@@ -125,22 +125,74 @@ class MyLinkedList<T> : ICollection<T>
 
     public MyNode<T>? Find(T value)
     {
-        throw new NotImplementedException();
+        MyNode<T> current = First;
+
+        while (current != null)
+        {
+            if (current.Value.Equals(value))
+            {
+                return current;
+            }
+            else
+            {
+                current = current.Next;
+            }
+        }
+        return null;
     }
 
     public MyNode<T>? FindLast(T value)
     {
-        throw new NotImplementedException();
+        MyNode<T> current = First;
+        MyNode<T> find = null;
+
+        while (current != null)
+        {
+            if (current.Value.Equals(value))
+            {
+                find = current;
+            }
+            current = current.Next;
+        }
+        return find;
     }
 
     public bool Remove(T value)
     {
-        throw new NotImplementedException();
+        MyNode<T> current = Find(value);
+
+        if (current == null)
+        {
+            return false;
+        }
+        Remove(current);
+        return true;
     }
 
     public void Remove(MyNode<T> node)
     {
-        throw new NotImplementedException();
+        if (node.Previous != null)
+        {
+            node.Previous.Next = node.Next;
+        }
+
+        if (node.Next != null)
+        {
+            node.Next.Previous = node.Previous;
+        }
+
+        if (node == First)
+        {
+            First = node.Next;
+        }
+
+        if (node == Last)
+        {
+            Last = node.Previous;
+        }
+        node.Next = null;
+        node.Previous = null;
+        Count--;
     }
 
     public void RemoveFirst()

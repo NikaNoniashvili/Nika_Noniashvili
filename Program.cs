@@ -15,6 +15,9 @@ internal class Program
         list.AddAfter(list.First, 8);
         list.AddBefore(list.Last, 9);
         list.AddBefore(list.Last, 10);
+        list.Find(2);
+        list.FindLast(3);
+
 
         MyNode<int> current = list.First;
         while (current != null)
