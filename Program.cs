@@ -17,6 +17,15 @@ internal class Program
         list.AddBefore(list.Last, 10);
         list.Find(2);
         list.FindLast(3);
+        list.Remove(7);
+        list.RemoveFirst();
+        list.RemoveLast();
+        list.RemoveLast();
+        list.Clear();
+        list.AddFirst(1);
+        list.AddFirst(2);
+        list.AddFirst(3);
+        list.Contains(2);
 
 
         MyNode<int> current = list.First;

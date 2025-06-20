@@ -15,14 +15,14 @@ class MyLinkedList<T> : ICollection<T>
         Count = 0;
     }
 
-    public MyNode<T> AddFirst(T value)
+    public MyNode<T>? AddFirst(T value)
     {
         MyNode<T> newNode = new MyNode<T>(value);
         AddFirst(newNode);
         return newNode;
     }
 
-    public void AddFirst(MyNode<T> node)
+    public void AddFirst(MyNode<T>? node)
     {
         ArgumentNullException.ThrowIfNull(node, nameof(node));
 
@@ -42,14 +42,14 @@ class MyLinkedList<T> : ICollection<T>
         Count++;
     }
 
-    public MyNode<T> AddLast(T value)
+    public MyNode<T>? AddLast(T value)
     {
-        MyNode<T> newNode = new MyNode<T>(value);
+        MyNode<T>? newNode = new MyNode<T>(value);
         AddLast(newNode);
         return newNode;
     }
 
-    public void AddLast(MyNode<T> node)
+    public void AddLast(MyNode<T>? node)
     {
         ArgumentNullException.ThrowIfNull(node, nameof(node));
 
@@ -70,15 +70,15 @@ class MyLinkedList<T> : ICollection<T>
         Count++;
     }
 
-    public MyNode<T> AddAfter(MyNode<T> node, T value)
+    public MyNode<T>? AddAfter(MyNode<T>? node, T value)
     {
         ArgumentNullException.ThrowIfNull(node, nameof(node));
-        MyNode<T> newNode = new MyNode<T>(value);
+        MyNode<T>? newNode = new MyNode<T>(value);
         AddAfter(node, newNode);
         return newNode;
     }
 
-    public void AddAfter(MyNode<T> node, MyNode<T> newNode)
+    public void AddAfter(MyNode<T>? node, MyNode<T>? newNode)
     {
         ArgumentNullException.ThrowIfNull(node, nameof(node));
         ArgumentNullException.ThrowIfNull(newNode, nameof(newNode));
@@ -97,7 +97,7 @@ class MyLinkedList<T> : ICollection<T>
         Count++;
     }
 
-    public MyNode<T> AddBefore(MyNode<T> node, T value)
+    public MyNode<T>? AddBefore(MyNode<T>? node, T value)
     {
         ArgumentNullException.ThrowIfNull(node, nameof(node));
         MyNode<T> newNode = new MyNode<T>(value);
@@ -105,7 +105,7 @@ class MyLinkedList<T> : ICollection<T>
         return newNode;
     }
 
-    public void AddBefore(MyNode<T> node, MyNode<T> newNode)
+    public void AddBefore(MyNode<T>? node, MyNode<T>? newNode)
     {
         ArgumentNullException.ThrowIfNull(node, nameof(node));
         ArgumentNullException.ThrowIfNull(newNode, nameof(newNode));
@@ -125,7 +125,7 @@ class MyLinkedList<T> : ICollection<T>
 
     public MyNode<T>? Find(T value)
     {
-        MyNode<T> current = First;
+        MyNode<T>? current = First;
 
         while (current != null)
         {
@@ -143,8 +143,8 @@ class MyLinkedList<T> : ICollection<T>
 
     public MyNode<T>? FindLast(T value)
     {
-        MyNode<T> current = First;
-        MyNode<T> find = null;
+        MyNode<T>? current = First;
+        MyNode<T>? find = null;
 
         while (current != null)
         {
@@ -169,7 +169,7 @@ class MyLinkedList<T> : ICollection<T>
         return true;
     }
 
-    public void Remove(MyNode<T> node)
+    public void Remove(MyNode<T>? node)
     {
         if (node.Previous != null)
         {
@@ -197,12 +197,26 @@ class MyLinkedList<T> : ICollection<T>
 
     public void RemoveFirst()
     {
-        throw new NotImplementedException();
+        MyNode<T> removeNode = First;
+
+        if (First.Next != null)
+        {
+            First = First.Next;
+            First.Previous = null;
+        }
+        Count--;
     }
 
     public void RemoveLast()
     {
-        throw new NotImplementedException();
+        MyNode<T> removeNode = Last;
+
+        if (Last.Previous != null)
+        {
+            Last = Last.Previous;
+            Last.Next = null;
+        }
+        Count --;
     }
 
     public int Count { get; private set; }
@@ -211,12 +225,27 @@ class MyLinkedList<T> : ICollection<T>
 
     public void Clear()
     {
-        throw new NotImplementedException();
+        First = null;
+        Last = null;
+        Count = 0;
     }
 
     public bool Contains(T item)
     {
-        throw new NotImplementedException();
+        MyNode<T>? current = First;
+
+        while (current != null)
+        {
+            if (current.Value.Equals(item))
+            {
+                return true;
+            }
+            else
+            {
+                current = current.Next;
+            }
+        }
+        return false;
     }
 
     public void CopyTo(T[] array, int arrayIndex)
