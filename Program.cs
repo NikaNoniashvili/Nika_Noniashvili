@@ -1,6 +1,6 @@
 ﻿namespace G08_20251406;
 
-internal class Program
+class Program
 {
     static void Main()
     {
@@ -28,11 +28,9 @@ internal class Program
         list.Contains(2);
 
 
-        MyNode<int> current = list.First;
-        while (current != null)
+        foreach (var item in list)
         {
-            Console.WriteLine(current.Value);
-            current = current.Next;
+            Console.WriteLine(item);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using ConsoleApp2;
+using System.Collections;
 
 namespace G08_20251406;
 
@@ -260,7 +261,7 @@ class MyLinkedList<T> : ICollection<T>
 
     public IEnumerator<T> GetEnumerator()
     {
-        throw new NotImplementedException();
+        return new MyEnumerator<T>(First);
     }
 
     IEnumerator IEnumerable.GetEnumerator()
