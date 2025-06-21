@@ -12,6 +12,7 @@ namespace ConsoleApp57
             stack.Push(3);
             stack.Push(4);
             stack.Push(5);
+            stack.Push(6);
             stack.TrimToSize();
             foreach (var item in stack)
             {
@@ -26,6 +27,7 @@ namespace ConsoleApp57
             queue.Enqueue(3);
             queue.Enqueue(4);
             queue.Enqueue(5);
+            queue.Enqueue(6);
             queue.TrimToSize();
             foreach (var item in queue)
             {
