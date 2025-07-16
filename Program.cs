@@ -4,9 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        string path = @"D:\StreamSum.txt";
+        string path = @"D:\Stream File.txt";
+
         StreamHelper streamHelper = new StreamHelper(path);
-        int? result = streamHelper.FileCountWords();
+        string result = streamHelper.FileReader();
         Console.WriteLine(result);
     }
 }

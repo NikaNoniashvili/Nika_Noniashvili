@@ -2,25 +2,20 @@
 
 class StreamHelper
 {
-    public string? Path { get; set; }
+    public string? Path { get;}
 
     public StreamHelper(string path)
-    {
-        Path = path;
-    }
-
-    public void FileCheck()
     {
         if (!File.Exists(Path))
         {
             throw new ArgumentNullException($"File not found: {Path}");
         }
+        Path = path;
     }
 
-    public string? FileSum()
+    public int FileSum()
     {
-        FileCheck();
-        int? sum = 0;
+        int sum = 0;
         string? line;
         int number;
 
@@ -34,13 +29,12 @@ class StreamHelper
             }
         }
         reader.Close();
-        return $"{sum}";
+        return sum;
     }
 
-    public int? FileLinesCount()
+    public int FileLinesCount()
     {
-        FileCheck();
-        int? count = 0;
+        int count = 0;
         StreamReader reader = new StreamReader(Path);
         string? line;
         while ((line = reader.ReadLine()) != null)
@@ -53,7 +47,6 @@ class StreamHelper
 
     public string? FileReader()
     {
-        FileCheck();
         StreamReader reader = new StreamReader(Path);
         string text = reader.ReadToEnd();
         reader.Close();
@@ -62,7 +55,6 @@ class StreamHelper
 
     public string? FileReaderLine()
     {
-        FileCheck();
         FileStream fileStream = new FileStream(Path, FileMode.Open);
         StreamReader streamReader = new StreamReader(fileStream);
         string? line = streamReader.ReadLine();
@@ -72,7 +64,6 @@ class StreamHelper
 
     public string? FileReaderLastLine()
     {
-        FileCheck();
         StreamReader reader = new StreamReader(Path);
         string? lastLine = null;
         string? line;
@@ -114,7 +105,6 @@ class StreamHelper
 
     public void FileWriterAppend()
     {
-        FileCheck();
         string path = Path;
         FileStream fileStream = new FileStream(Path, FileMode.Append);
         StreamWriter writer = new StreamWriter(fileStream);
@@ -141,7 +131,6 @@ class StreamHelper
 
     public void FileWriterAppend(string text)
     {
-        FileCheck();
         FileStream fileStream = new FileStream(Path, FileMode.Append);
         StreamWriter writer = new StreamWriter(fileStream);
         writer.WriteLine(text);
@@ -151,7 +140,6 @@ class StreamHelper
 
     public void FileGadatanaTxt(string file)
     {
-        FileCheck();
         StreamReader reader = new StreamReader(Path);
         StreamWriter writer = new StreamWriter(file);
 
@@ -160,23 +148,15 @@ class StreamHelper
 
         while ((line = reader.ReadLine()) != null)
         {
-            if (line != "" || line == "")
-            {
-                writer.WriteLine($"{number}. {line}");
-                number++;
-            }
-            else
-            {
-                writer.WriteLine();
-            }
+            writer.WriteLine($"{number}. {line}");
+            number++;
         }
         reader.Close();
         writer.Close();
     }
 
-    public int? FileCountSymbols()
+    public int FileCountSymbols()
     {
-        FileCheck();
         StreamReader reader = new StreamReader(Path);
         int count = 0;
         string? line;
@@ -196,10 +176,9 @@ class StreamHelper
         return count;
     }
 
-    public int? FileCountWords()
+    public int FileCountWords()
     {
-        FileCheck();
-        StreamReader reader  = new StreamReader(Path);
+        StreamReader reader = new StreamReader(Path);
         int count = 0;
         string? line;
 
