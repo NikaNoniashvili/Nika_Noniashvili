@@ -6,11 +6,11 @@ class StreamHelper
 
     public StreamHelper(string path)
     {
+        Path = path;
         if (!File.Exists(Path))
         {
             throw new ArgumentNullException($"File not found: {Path}");
         }
-        Path = path;
     }
 
     public int FileSum()
@@ -204,5 +204,32 @@ class StreamHelper
         }
         reader.Close();
         return count;
+    }
+
+    public void FileCountEachWords()
+    {
+        string text = FileReader();
+
+        Dictionary<char, int> wordCount = new Dictionary<char, int>();
+
+        foreach (var c in text)
+        {
+            if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= '0' && c <= '9')
+            {
+                if (wordCount.ContainsKey(c))
+                {
+                    wordCount[c]++;
+                }
+                else
+                {
+                    wordCount.Add(c, 1);
+                }
+            }
+        }
+
+        foreach (var item in wordCount)
+        {
+            Console.WriteLine($"{item.Key}  {item.Value}");
+        }
     }
 }
