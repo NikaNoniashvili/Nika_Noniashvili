@@ -55,8 +55,7 @@ class StreamHelper
 
     public string? FileReaderLine()
     {
-        FileStream fileStream = new FileStream(Path, FileMode.Open);
-        StreamReader streamReader = new StreamReader(fileStream);
+        StreamReader streamReader = new StreamReader(Path);
         string? line = streamReader.ReadLine();
         streamReader.Close();
         return line;
@@ -126,7 +125,6 @@ class StreamHelper
             }
         }
         writer.Close();
-        fileStream.Close();
     }
 
     public void FileWriterAppend(string text)
