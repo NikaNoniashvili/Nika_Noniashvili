@@ -1,12 +1,10 @@
-﻿namespace ConsoleApp2;
-
-class Program
+﻿namespace ConsoleApp126
 {
-    static void Main(string[] args)
+    internal class Program
     {
-        string path = @"D:\File.txt";
-
-        StreamHelper streamHelper = new StreamHelper(path);
-        streamHelper.FileCountEachWords();
+        static void Main(string[] args)
+        {
+            BruteForceGenerator.Generate(@"d:\abc\output.txt", 1, 2, letters : false);
+        }
     }
 }
